@@ -1,7 +1,7 @@
-# Tausif — Creative Portfolio (React + Vite)
+# Tausif — Portfolio
 
 Pages:
-1) Welcome (interactive lamp, name capture, validation, localStorage)
+1) Welcome (interactive lamp, name capture, validation)
 2) Resume story (Landing page sections, tiles, smooth reveals)
 3) Feedback (shy "no" button + celebration on "yeah")
 
@@ -12,7 +12,3 @@ npm run dev
 ## Build
 npm run build
 npm run preview
-
-## Optional: Private visit logging + email notifications
-Set VITE_API_BASE to your Supabase Edge Functions base URL:
-VITE_API_BASE=https://<project-ref>.supabase.co/functions/v1
