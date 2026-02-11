@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Lamp from "../components/lamp.jsx";
+import Lamp from "../components/Lamp.jsx";
 import { logVisit } from "../lib/api.js";
 
 const NAME_KEY = "visitorName";
