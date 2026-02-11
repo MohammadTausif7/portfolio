@@ -108,18 +108,25 @@ export default function ResumeStory() {
     return (
         <motion.div className="grain pageBg" variants={page} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
             <div className="topBar">
-                <div className="container" style={{ padding: "14px 0", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                <div className="container topBarInner">
+                    <div className="topBrand">
                         <span className="kicker"><span>🧔🏻</span><span>Portfolio</span></span>
-                        <span className="small" style={{ color: "rgba(255,255,255,.70)" }}>Hi {greetName} — welcome.</span>
+                        <span className="small" style={{ color: "rgba(255,255,255,.70)" }}>
+                            Hi {greetName} — welcome.
+                        </span>
                     </div>
 
-                    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                    <div className="topNav">
                         <a className="navPill hoverZoom" href="#experience"><span>🧰</span><span>Experience</span></a>
                         <a className="navPill hoverZoom" href="#projects"><span>🧩</span><span>Projects</span></a>
                         <a className="navPill hoverZoom" href="#skills"><span>🛠️</span><span>Skills</span></a>
                         <a className="navPill hoverZoom" href="#contact"><span>📫</span><span>Contact</span></a>
-                        <button className="btn btnPrimary" onClick={() => nav("/feedback")} style={{ padding: "10px 14px" }}>
+
+                        <button
+                            className="btn btnPrimary"
+                            onClick={() => nav("/feedback")}
+                            style={{ padding: "10px 14px" }}
+                        >
                             Submit feedback →
                         </button>
                     </div>
@@ -128,7 +135,7 @@ export default function ResumeStory() {
 
             <div className="container" style={{ padding: "72px 0 26px" }}>
                 <div className="kicker"><span>✨</span><span>Greetings!</span></div>
-                <div className="PhotoFrame" style={{ marginTop: 18, width: 250, height: 250, borderRadius: 28, background: "rgba(0,0,0,.22)" }}>
+                <div className="PhotoFrame heroFrame" style={{ marginTop: 18, width: 250, height: 250, borderRadius: 28, background: "rgba(0,0,0,.22)" }}>
                     <img
                         src={avatar}
                         alt="Tausif Ibrahim Mohammad"

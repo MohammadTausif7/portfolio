@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MiniNav({ items }) {
     return (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
+        <div className="miniNav">
             {items.map((it) => {
                 const isExternal = it.href.startsWith("http") || it.href.startsWith("mailto:") || it.href.startsWith("tel:");
                 return (

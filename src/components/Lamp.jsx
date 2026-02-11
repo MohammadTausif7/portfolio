@@ -1,26 +1,23 @@
 import React from "react";
-import { motion, AnimatePresence, delay } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Lamp({ isOn, onToggle }) {
     return (
-        <div style={{ position: "relative", width: "min(620px, 94vw)", margin: "0 auto" }}>
+        <div className="lampWrap">
             <svg viewBox="0 0 640 520" width="100%" height="auto" aria-label="Realistic lamp">
                 <defs>
-                    {/* Room glow */}
                     <radialGradient id="roomGlow" cx="50%" cy="40%" r="75%">
                         <stop offset="0%" stopColor="#ffe6a3" stopOpacity={isOn ? "0.55" : "0.05"} />
                         <stop offset="45%" stopColor="#ffe6a3" stopOpacity={isOn ? "0.18" : "0"} />
                         <stop offset="100%" stopColor="#000" stopOpacity="0" />
                     </radialGradient>
 
-                    {/* Warm lamp emission */}
                     <radialGradient id="lampCore" cx="50%" cy="55%" r="60%">
                         <stop offset="0%" stopColor="#fff3c6" stopOpacity={isOn ? "0.75" : "0"} />
                         <stop offset="55%" stopColor="#ffe189" stopOpacity={isOn ? "0.22" : "0"} />
                         <stop offset="100%" stopColor="#ffe189" stopOpacity="0" />
                     </radialGradient>
 
-                    {/* Metals */}
                     <linearGradient id="metalStem" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="rgba(255,255,255,0.26)" />
                         <stop offset="40%" stopColor="rgba(255,255,255,0.10)" />
@@ -33,7 +30,6 @@ export default function Lamp({ isOn, onToggle }) {
                         <stop offset="100%" stopColor="rgba(0,0,0,0.28)" />
                     </linearGradient>
 
-                    {/* Shade fabric */}
                     <linearGradient id="shadeOuter" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor={isOn ? "rgba(255,233,137,0.22)" : "rgba(255,255,255,0.12)"} />
                         <stop offset="100%" stopColor={isOn ? "rgba(255,233,137,0.10)" : "rgba(255,255,255,0.06)"} />
@@ -44,7 +40,6 @@ export default function Lamp({ isOn, onToggle }) {
                         <stop offset="100%" stopColor={isOn ? "rgba(255,233,137,0.18)" : "rgba(0,0,0,0.35)"} />
                     </linearGradient>
 
-                    {/* Shadows */}
                     <filter id="dropShadow" x="-40%" y="-40%" width="180%" height="180%">
                         <feDropShadow dx="0" dy="22" stdDeviation="22" floodColor="#000" floodOpacity="0.48" />
                     </filter>
@@ -58,21 +53,12 @@ export default function Lamp({ isOn, onToggle }) {
                     </filter>
                 </defs>
 
-                {/* Background glow */}
                 <rect x="0" y="0" width="640" height="520" fill="url(#roomGlow)" />
-
-                {/* Desk */}
                 <rect x="0" y="410" width="640" height="110" fill="rgba(255,255,255,0.035)" />
 
-                {/* Light spill on desk */}
                 <AnimatePresence>
                     {isOn && (
-                        <motion.g
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.35 }}
-                        >
+                        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
                             <ellipse cx="320" cy="400" rx="190" ry="52" fill="rgba(255,233,137,0.10)" />
                             <ellipse cx="320" cy="400" rx="130" ry="38" fill="rgba(255,233,137,0.14)" />
                             <ellipse cx="320" cy="400" rx="70" ry="22" fill="rgba(255,233,137,0.18)" />
@@ -80,19 +66,13 @@ export default function Lamp({ isOn, onToggle }) {
                     )}
                 </AnimatePresence>
 
-                {/* Lamp */}
                 <g filter="url(#dropShadow)">
-                    {/* Base */}
                     <path
-                        d="M170 410
-               C210 360, 430 360, 470 410
-               L470 440
-               C470 470, 170 470, 170 440 Z"
+                        d="M170 410 C210 360, 430 360, 470 410 L470 440 C470 470, 170 470, 170 440 Z"
                         fill="url(#metalBase)"
                         stroke="rgba(255,255,255,0.14)"
                         strokeWidth="2"
                     />
-                    {/* Base highlight rim */}
                     <path
                         d="M185 410 C220 372, 420 372, 455 410"
                         fill="none"
@@ -101,89 +81,51 @@ export default function Lamp({ isOn, onToggle }) {
                         strokeLinecap="round"
                     />
 
-                    {/* Stem */}
-                    <rect
-                        x="304"
-                        y="160"
-                        width="32"
-                        height="280"
-                        rx="16"
-                        fill="url(#metalStem)"
-                        stroke="rgba(255,255,255,0.14)"
-                        strokeWidth="2"
-                    />
-                    {/* Stem specular highlight */}
+                    <rect x="304" y="160" width="32" height="280" rx="16" fill="url(#metalStem)" stroke="rgba(255,255,255,0.14)" strokeWidth="2" />
                     <rect x="310" y="210" width="6" height="205" rx="3" fill="rgba(255,255,255,0.12)" />
 
-                    {/* Shade outer (more realistic shape) */}
                     <path
-                        d="M150 135
-               C175 40, 465 40, 490 135
-               L440 265
-               C420 300, 220 300, 200 265 Z"
+                        d="M150 135 C175 40, 465 40, 490 135 L440 265 C420 300, 220 300, 200 265 Z"
                         fill="url(#shadeOuter)"
                         stroke={isOn ? "rgba(255,233,137,0.32)" : "rgba(255,255,255,0.16)"}
                         strokeWidth="2"
                     />
 
-                    {/* Shade inner (depth) */}
                     <path
-                        d="M205 170
-               C225 90, 415 90, 435 170
-               L405 220
-               C388 242, 252 242, 235 220 Z"
+                        d="M205 170 C225 90, 415 90, 435 170 L405 220 C388 242, 252 242, 235 220 Z"
                         fill="url(#shadeInner)"
                         stroke="rgba(255,255,255,0.10)"
                     />
 
-                    {/* Rim highlight */}
-                    <path
-                        d="M205 250 C235 190, 405 190, 435 250"
-                        fill="none"
-                        stroke="rgba(255,255,255,0.10)"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                    />
+                    <path d="M205 250 C235 190, 405 190, 435 250" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="2.5" strokeLinecap="round" />
 
-                    {/* Bulb glow */}
                     <g filter={isOn ? "url(#softGlow)" : "none"}>
                         <ellipse cx="320" cy="305" rx="110" ry="56" fill="url(#lampCore)" />
                     </g>
 
-                    {/* Face (on the shade) */}
                     <g>
                         {!isOn ? (
                             <>
-                                {/* sleepy eyes */}
                                 <path d="M285 220 Q300 210 315 220" stroke="rgba(255,255,255,0.75)" strokeWidth="4" fill="none" strokeLinecap="round" />
                                 <path d="M325 220 Q340 210 355 220" stroke="rgba(255,255,255,0.75)" strokeWidth="4" fill="none" strokeLinecap="round" />
-                                {/* sleepy mouth */}
                                 <path d="M308 250 Q320 260 332 250" stroke="rgba(255,255,255,0.55)" strokeWidth="4" fill="none" strokeLinecap="round" />
                             </>
                         ) : (
                             <>
-                                {/* awake eyes */}
                                 <circle cx="300" cy="220" r="6.5" fill="rgba(255,255,255,0.82)" />
                                 <circle cx="340" cy="220" r="6.5" fill="rgba(255,255,255,0.82)" />
-                                {/* smile */}
                                 <path d="M302 250 Q320 260 338 250" stroke="rgba(255,255,255,0.82)" strokeWidth="4.5" fill="none" strokeLinecap="round" />
                             </>
                         )}
                     </g>
 
-                    {/* Blush */}
                     <circle cx="274" cy="250" r="9" fill={isOn ? "rgba(255,85,85,0.16)" : "rgba(255,85,85,0.08)"} />
                     <circle cx="366" cy="250" r="9" fill={isOn ? "rgba(255,85,85,0.16)" : "rgba(255,85,85,0.08)"} />
                 </g>
 
-                {/* Zzz when off */}
                 <AnimatePresence>
                     {!isOn && (
-                        <motion.g
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 8 }}
-                        >
+                        <motion.g initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
                             <motion.text
                                 x="430"
                                 y="120"
@@ -222,8 +164,7 @@ export default function Lamp({ isOn, onToggle }) {
                 </AnimatePresence>
             </svg>
 
-            {/* Realistic rocker switch */}
-            <div style={{ position: "absolute", right: 34, top: 290 }}>
+            <div className="lampSwitch">
                 <motion.button
                     onClick={onToggle}
                     whileTap={{ scale: 0.98 }}
@@ -242,10 +183,9 @@ export default function Lamp({ isOn, onToggle }) {
                         cursor: "pointer",
                         padding: 8,
                         display: "grid",
-                        alignItems: "center"
+                        alignItems: "center",
                     }}
                 >
-                    {/* Inner rocker track */}
                     <div
                         style={{
                             width: "100%",
@@ -254,10 +194,9 @@ export default function Lamp({ isOn, onToggle }) {
                             background: "rgba(0,0,0,0.30)",
                             border: "1px solid rgba(255,255,255,0.10)",
                             position: "relative",
-                            overflow: "hidden"
+                            overflow: "hidden",
                         }}
                     >
-                        {/* tiny LED */}
                         <div
                             style={{
                                 position: "absolute",
@@ -267,11 +206,10 @@ export default function Lamp({ isOn, onToggle }) {
                                 height: 8,
                                 borderRadius: 99,
                                 background: isOn ? "rgba(80,250,123,0.9)" : "rgba(255,255,255,0.22)",
-                                boxShadow: isOn ? "0 0 12px rgba(80,250,123,0.55)" : "none"
+                                boxShadow: isOn ? "0 0 12px rgba(80,250,123,0.55)" : "none",
                             }}
                         />
 
-                        {/* Rocker */}
                         <motion.div
                             animate={{ x: isOn ? 38 : 0, rotate: isOn ? -6 : 6 }}
                             transition={{ type: "spring", stiffness: 420, damping: 28 }}
@@ -286,9 +224,7 @@ export default function Lamp({ isOn, onToggle }) {
                                     ? "linear-gradient(180deg, rgba(255,233,137,0.35), rgba(255,233,137,0.10))"
                                     : "linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06))",
                                 border: "1px solid rgba(255,255,255,0.16)",
-                                boxShadow: isOn
-                                    ? "0 10px 22px rgba(255,233,137,0.14)"
-                                    : "0 10px 22px rgba(0,0,0,0.28)"
+                                boxShadow: isOn ? "0 10px 22px rgba(255,233,137,0.14)" : "0 10px 22px rgba(0,0,0,0.28)",
                             }}
                         />
                     </div>
