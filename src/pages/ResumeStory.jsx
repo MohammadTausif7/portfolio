@@ -304,7 +304,7 @@ export default function ResumeStory() {
                         </a>
 
                         <a
-                            href="tel:+1XXXXXXXXXX"
+                            href="tel:+14058164158"
                             className="contactPill phone"
                         >
                             <span className="icon">📞</span>
